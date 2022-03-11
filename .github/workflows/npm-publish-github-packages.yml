@@ -12,10 +12,14 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+      - name: Derive appropriate SHAs for base and head for `nx affected` commands
+        uses: nrwl/nx-set-shas@v2
       - uses: actions/setup-node@v2
         with:
           node-version: 16
-      - run: yarn nx run-many --target=build --all
+      - run: npm install
+      - run: npx nx affected --target=build --parallel=3
+      - run: npx nx affected --target=test --parallel=2
 
   publish-gpr:
     needs: build
@@ -25,11 +29,15 @@ jobs:
       packages: write
     steps:
       - uses: actions/checkout@v2
+      - name: Derive appropriate SHAs for base and head for `nx affected` commands
+        uses: nrwl/nx-set-shas@v2
       - uses: actions/setup-node@v2
         with:
           node-version: 16
           registry-url: https://npm.pkg.github.com/
-      - run: yarn nx run-many --target=build --all
+      - run: npm install
+      - run: npx nx affected --target=build --parallel=3
+      - run: npx nx affected --target=test --parallel=2
       - run: npm publish
         env:
           NODE_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}

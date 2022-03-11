@@ -47,8 +47,8 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        target: ['lint', 'test', 'build', 'e2e']
-        index: [1, 2, 3, 4]
+        target: [ 'lint', 'test', 'build', 'e2e' ]
+        index: [ 1, 2, 3, 4 ]
     env:
       count: 4
     steps:

@@ -1,0 +1,25 @@
+name: Deploy to Prod
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'The release to deploy'
+        required: true
+      application:
+        type: choice
+        description: What application
+        required: true
+        options:
+          - semore
+          - ssspostpay
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+            fetch-depth: 0
+            ref: ${{github.event.inputs.version}}
+      - run: yarn install
+      - run: yarn nx run-many --target=build --all --prod

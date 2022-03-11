@@ -25,6 +25,5 @@ jobs:
       - uses: actions/checkout@v2
       - run: yarn install
       - run: yarn nx run-many --target=build --all --prod
-      - run: npm publish
         env:
           NODE_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}

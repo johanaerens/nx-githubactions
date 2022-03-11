@@ -16,8 +16,7 @@ jobs:
         with:
           node-version: 16
       - run: npm install
-      - run: npx nx affected --target=build --parallel=3 --base=origin/main
-      - run: npx nx affected --target=test --parallel=2 --base=origin/main
+      - run: nx build
 
   publish-gpr:
     needs: build
@@ -32,8 +31,7 @@ jobs:
           node-version: 16
           registry-url: https://npm.pkg.github.com/
       - run: npm install
-      - run: npx nx affected --target=build --parallel=3 --base=origin/main
-      - run: npx nx affected --target=test --parallel=2 --base=origin/main
+      - run: nx build
       - run: npm publish
         env:
           NODE_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}

@@ -1,6 +1,6 @@
 name: Nx Distributed Tasks
 
-#info see https://medium.com/emoteev-blog/10x-faster-ci-with-nx-and-github-actions-9a51fc4e82a6
+#info see https://medium.com/emoteev-blog/10x-faster-ci-with-nx-and-github-actions-9a51fc4e82a6 & https://github.com/nrwl/nx-azure-build/blob/master/tools/scripts/run-many.js
 
 on: push
 

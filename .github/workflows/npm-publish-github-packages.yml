@@ -8,23 +8,23 @@ on:
     types: [created]
 
 jobs:
-  build:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      - run: yarn install
-      - run: yarn nx run-many --target=build --all --prod
+#  build:
+#    runs-on: ubuntu-latest
+#    steps:
+#      - uses: actions/checkout@v2
+#      - run: npm install
+#      - run: npm nx run-many --target=build --all --prod
 
   publish-gpr:
-    needs: build
+#    needs: build
     runs-on: ubuntu-latest
     permissions:
       contents: read
       packages: write
     steps:
       - uses: actions/checkout@v2
-      - run: yarn install
-      - run: yarn nx run-many --target=build --all --prod
-      - run: yarn publish
+      - run: npm install
+      - run: npm nx run-many --target=build --all --prod
+      - run: npm publish
         env:
           NODE_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}

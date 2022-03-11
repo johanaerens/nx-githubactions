@@ -12,8 +12,8 @@ jobs:
 #    runs-on: ubuntu-latest
 #    steps:
 #      - uses: actions/checkout@v2
-#      - run: npm install
-#      - run: npm nx run-many --target=build --all --prod
+#      - run: yarn install
+#      - run: yarn nx run-many --target=build --all --prod
 
   publish-gpr:
 #    needs: build
@@ -23,8 +23,8 @@ jobs:
       packages: write
     steps:
       - uses: actions/checkout@v2
-      - run: npm install
-      - run: npm nx run-many --target=build --all --prod
+      - run: yarn install
+      - run: yarn nx run-many --target=build --all --prod
       - run: npm publish
         env:
           NODE_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
